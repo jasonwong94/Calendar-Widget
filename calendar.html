@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>Calendar Widget | YNCN </title> 
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.js"></script>
+		<script src="calendar_app.js"></script>
+		<script src="calendar_service.js"></script>
+		<script src="calendar_controller.js"></script>
+	</head>
+	<body ng-app="calendarWidget" ng-controller="calendarController as main">
+		<h1>Calendar</h1>
+		<span>{{main.month}}</span>
+		<table>
+			<tr>
+				<th>Sunday</th>
+				<th>Monday</th>
+				<th>Tuesday</th>
+				<th>Wednesday</th>
+				<th>Thursday</th>
+				<th>Friday</th>
+				<th>Saturday</th>
+			</tr>
+			<tr ng-repeat="(weekID, week) in main.monthObjects">
+				<td ng-repeat="(date, event) in week">
+					{{date | date:'MM/yyyy'}}
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

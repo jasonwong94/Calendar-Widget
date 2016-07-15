@@ -71,16 +71,16 @@ app.service("calendarService", function() {
 		}
 	}
 
-	service.generateCalendarObject = function(){
+	service.generateCalendarObject = function(monthID){
 
 		//get the first Sunday of the 1st week of the month
-		var firstSunday = moment().startOf('month').startOf('week')
+		var firstSunday = moment().month(monthID).startOf('month').startOf('week')
 
 		//get the first week (not ISO!)
 		var firstWeekID = firstSunday.week()
 
 		//get the last day of the last week of the month
-		var lastSaturday = moment().endOf('month').endOf('week')
+		var lastSaturday = moment().month(monthID).endOf('month').endOf('week')
 		var lastWeekID = lastSaturday.week()
 
 		var weeks = _.range(firstWeekID, (lastWeekID+1), 1)
@@ -106,6 +106,9 @@ app.service("calendarService", function() {
 		}
 
 		return week; 
+	}
+
+	service.changeMonth = function(monthID){
 
 	}
 })

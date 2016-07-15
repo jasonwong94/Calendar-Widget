@@ -5,17 +5,29 @@ app.controller("calendarController", ["$scope", "calendarService", function($sco
 
 	var vm = this;
 	var present = new moment();
-	vm.present = present;
+	
+	//today's date
+	vm.today = {}
+	vm.today['year'] = present.year()
+	vm.today['month'] = present.month()
+	vm.today['day'] = present.day();
+
+	//parameters shown
 	vm.year = present.year();
 	vm.month = present.month();
 	vm.day = present.day();
-	
-	var numDays = present.daysInMonth();
 
-	var firstDayOfMonth = moment([vm.year, vm.month, 1]).day();
-	var lastDayOfMonth = moment([vm.year, vm.month, numDays]).day();
+	vm.monthObjects = calendarService.generateCalendarObject( vm.month );
 
-	vm.monthObjects = calendarService.generateCalendarObject();
+	vm.PreviousMonth = function(){
+		vm.month -= 1;
+		vm.monthObjects = calendarService.generateCalendarObject( vm.month );
+	}
+
+	vm.NextMonth = function(){
+		vm.month += 1;
+		vm.monthObjects = calendarService.generateCalendarObject( vm.month );
+	}
 
 }])
 

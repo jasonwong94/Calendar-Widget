@@ -71,33 +71,40 @@ app.service("calendarService", function() {
 		}
 	}
 
-	service.generateCalendarObject = function(monthID){
+	service.generateCalendarObject = function(yearID, monthID){
 
 		//get the first Sunday of the 1st week of the month
-		var firstSunday = moment().month(monthID).startOf('month').startOf('week')
+		var selectedMonth = moment([yearID, monthID, 1]);
+		var firstSunday = moment(selectedMonth.month(monthID)).startOf('month').startOf('week')
 
 		//get the first week (not ISO!)
 		var firstWeekID = firstSunday.week()
 
 		//get the last day of the last week of the month
-		var lastSaturday = moment().month(monthID).endOf('month').endOf('week')
+		var lastSaturday = moment(selectedMonth.month(monthID)).endOf('month').endOf('week')
 		var lastWeekID = lastSaturday.week()
+
+		//corner case- this happens between December and January
+		if(lastWeekID < firstWeekID){
+			lastWeekID += selectedMonth.weeksInYear();
+		}
 
 		var weeks = _.range(firstWeekID, (lastWeekID+1), 1)
 		var month = {}
+		service.year = yearID
 		_.each(weeks, function(index, key){
-			month[index] = _.cloneDeep( service.generateWeek(index) );
+			month[index] = _.cloneDeep( service.generateWeek(service.year, index) );
 		})
 
 		return month;
 	}
 
 	// generates an array
-	service.generateWeek = function(weekID){
+	service.generateWeek = function(yearID, weekID){
 		//figure out the first day of each week
 		var week = {}
 
-		var sunday = moment().week(weekID).startOf('week')
+		var sunday = moment().year(yearID).week(weekID).startOf('week')
 
 		//generate week object
 		for(day=0; day<7; day++){

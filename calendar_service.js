@@ -74,7 +74,7 @@ app.service("calendarService", function() {
 	service.generateCalendarObject = function(yearID, monthID){
 
 		//get the first Sunday of the 1st week of the month
-		var selectedMonth = moment([yearID, monthID, 1]);
+		var selectedMonth = moment([yearID, monthID, 1], "YYYY MMM D");
 		var firstSunday = moment(selectedMonth.month(monthID)).startOf('month').startOf('week')
 
 		//get the first week (not ISO!)

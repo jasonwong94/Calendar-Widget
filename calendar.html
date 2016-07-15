@@ -14,27 +14,36 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.js"></script>
+
+		<!-- Custom stuff -->
 		<script src="calendar_app.js"></script>
 		<script src="calendar_service.js"></script>
 		<script src="calendar_controller.js"></script>
+		<link rel="stylesheet" href="./calendar.css">
 	</head>
-	<body ng-app="calendarWidget" ng-controller="calendarController as main">
+	<body class="container" ng-app="calendarWidget" ng-controller="calendarController as main">
 		<h1>Calendar</h1>
-		<button type="button" class="btn btn-default" ng-click="main.PreviousMonth()">Previous Month</button>
-		<span>{{main.selectDate.year}}</span>
-		<span>{{main.selectDate.month}}</span>
-		<button type="button" class="btn btn-default" ng-click="main.NextMonth()">Next Month</button>
-		
-		<div class="table-responsive">
-			<table class="table">
+		<div class="row">
+			<div class="col-md-8">
+				<h2><span>{{main.selectDate.month}}</span>
+				<small>{{main.selectDate.year}}</small></h2>
+			</div>
+			<div class="btn-group col-md-4">
+				<button type="button" class="btn btn-default" ng-click="main.PreviousMonth()">Previous Month</button>
+				<button type="button" class="btn btn-default" ng-click="main.Today()">Today</button>
+				<button type="button" class="btn btn-default" ng-click="main.NextMonth()">Next Month</button>
+			</div>
+		</div>
+		<div class="row table-responsive">
+			<table class="table calendar-table">
 				<tr>
-					<th>Sunday</th>
-					<th>Monday</th>
-					<th>Tuesday</th>
-					<th>Wednesday</th>
-					<th>Thursday</th>
-					<th>Friday</th>
-					<th>Saturday</th>
+					<th class="calendar-header">Sunday</th>
+					<th class="calendar-header">Monday</th>
+					<th class="calendar-header">Tuesday</th>
+					<th class="calendar-header">Wednesday</th>
+					<th class="calendar-header">Thursday</th>
+					<th class="calendar-header">Friday</th>
+					<th class="calendar-header">Saturday</th>
 				</tr>
 				<tr ng-repeat="(weekID, week) in main.monthObjects">
 					<td ng-repeat="(date, event) in week">

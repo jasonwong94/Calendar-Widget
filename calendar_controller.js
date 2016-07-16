@@ -33,7 +33,7 @@ app.controller("calendarController", ["$scope", "calendarService", function($sco
 		vm.monthObjects = calendarService.generateCalendarObject( vm.selectDate['year'], vm.selectDate['month'] );
 	}
 
-	vm.Today = function(){
+	vm.SetCalendarToToday = function(){
 		selectDate = moment(present);
 		this.UpdateSelectDate(selectDate);
 		vm.monthObjects = calendarService.generateCalendarObject( vm.selectDate['year'], vm.selectDate['month'] );
@@ -46,11 +46,16 @@ app.controller("calendarController", ["$scope", "calendarService", function($sco
 	}
 
 	vm.FormatDate = function(date){
-		return moment(date).date();
+		return moment(date, calendarService.DATE_KEY_FORMAT).date();
 	}
 
 	vm.IsSameMonth = function(date){
-		return calendarService.dateIsSameMonth(date, moment().month(vm.selectDate['month']) );
+		return calendarService.dateIsSameMonthAndYear(
+			moment( date, calendarService.DATE_KEY_FORMAT ), 
+			moment(
+				[vm.selectDate['month'], vm.selectDate['day'], vm.selectDate['year'] ],
+				calendarService.DATE_KEY_FORMAT ) 
+		);
 	}
 
 	vm.IsToday = function(date){

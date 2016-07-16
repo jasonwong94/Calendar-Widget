@@ -4,6 +4,9 @@ var app = angular.module("calendarWidget")
 app.service("calendarService", function() {
 	var service = this;
 
+	//date format for the key
+	service.DATE_KEY_FORMAT = 'MMMM D YYYY'
+
 	service.getDay = function(day){
 		switch(day){
 			case 0:
@@ -91,7 +94,8 @@ app.service("calendarService", function() {
 
 		var weeks = _.range(firstWeekID, (lastWeekID+1), 1)
 		var month = {}
-		service.year = yearID
+		service.year = yearID;
+		service.month = monthID;
 		_.each(weeks, function(index, key){
 			month[index] = _.cloneDeep( service.generateWeek(service.year, index) );
 		})
@@ -100,7 +104,7 @@ app.service("calendarService", function() {
 	}
 
 	// generates an array
-	service.generateWeek = function(yearID, weekID){
+	service.generateWeek = function(yearID, weekID, monthID){
 		//figure out the first day of each week
 		var week = {}
 
@@ -108,16 +112,22 @@ app.service("calendarService", function() {
 
 		//generate week object
 		for(day=0; day<7; day++){
-			var weekday = moment(sunday).add(day, "days").format('MMMM D YYYY')
-			week[weekday] = {}
+			var weekday = moment(sunday).add(day, "days")
+			var key = weekday.format(this.DATE_KEY_FORMAT)
+			week[key] = {}
 		}
 
 		return week; 
 	}
 
-	service.changeMonth = function(monthID){
-
+	service.dateIsSameMonth = function(date, monthID){
+		return ( moment(date, this.DATE_KEY_FORMAT).month() == moment().month() )
 	}
+
+	service.dateIsToday = function(date){
+		return date == moment().format(this.DATE_KEY_FORMAT) 
+	}
+
 })
 
 })();

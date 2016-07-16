@@ -46,8 +46,8 @@
 					<th class="calendar-header">Saturday</th>
 				</tr>
 				<tr ng-repeat="(weekID, week) in main.monthObjects">
-					<td ng-repeat="(date, event) in week">
-						{{date | date:'MM/yyyy'}}
+					<td ng-repeat="(date, event) in week" ng-class="{ 'calendar-disable': !main.IsSameMonth(date)}" class="calendar-date">
+						<span ng-class="{ 'calendar-today': main.IsToday(date)}">{{ main.FormatDate(date) }}</span>
 					</td>
 				</tr>
 			</table>

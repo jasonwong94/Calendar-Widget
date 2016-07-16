@@ -45,6 +45,18 @@ app.controller("calendarController", ["$scope", "calendarService", function($sco
 		vm.selectDate['date'] = date.format('DD')
 	}
 
+	vm.FormatDate = function(date){
+		return moment(date).date();
+	}
+
+	vm.IsSameMonth = function(date){
+		return calendarService.dateIsSameMonth(date, moment().month(vm.selectDate['month']) );
+	}
+
+	vm.IsToday = function(date){
+		return calendarService.dateIsToday(date)
+	}
+
 }])
 
 })();

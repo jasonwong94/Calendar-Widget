@@ -6,3 +6,16 @@
 .calendar-header{
 	width: 14.28%;
 }
+
+.calendar-disable{
+	color: lightgray;
+}
+
+.calendar-date:hover{
+	background-color: #d7ffd7;
+}
+
+.calendar-today{
+	color: #29c330 !important;
+	font-weight: bolder !important;
+}

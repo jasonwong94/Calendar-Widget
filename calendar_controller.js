@@ -8,9 +8,9 @@ app.controller("calendarController", ["$scope", "calendarService", function($sco
 	
 	//today's date
 	vm.today = {}
-	vm.today['year'] = present.year()
-	vm.today['month'] = present.month()
-	vm.today['day'] = present.day();
+	vm.today['year'] = present.format('YYYY')
+	vm.today['month'] = present.format('MMMM')
+	vm.today['day'] = present.format('DD');
 
 	//current date selected- by default it is today
 	var selectDate = moment(present);

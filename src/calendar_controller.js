@@ -3,9 +3,11 @@ var app = angular.module("calendarWidget")
 
 app.controller("calendarController", ["$scope", "$window", "calendarService", function($scope, $window, calendarService){
 
+	moment = $window.moment;
+	_ = $window._;
+
 	var vm = this;
 	var present = new moment();
-	moment = $window.moment;
 	
 	//today's date
 	vm.today = {}

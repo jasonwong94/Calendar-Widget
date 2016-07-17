@@ -1,28 +1,25 @@
 describe('calender controller', function(){
-	
+
+	var calendarServiceMock, calendarControllerMock
 	//mock calendar service
-	// module(function($provide){
-	// 	$provide.service('calendarService', function(){
-	// 		this.generateCalendarObject = function(){
+	beforeEach( module('calendarWidget') );
 
-	// 		}
-	// 	})
-	// })
+	module(function($provide){
+		$provide.service('calendarService', function(){
+			this.generateCalendarObject = function(){
 
-	// inject(function(calendarService){
-	// 	mockCalendarService = calendarService
-	// })
+			}
+		})
+	})
 
-	// beforeEach( module('calendarWidget') );
+	beforeEach( inject(function($rootScope, $controller, _calendarService_){
+		scope = $rootScope.$new();
+		calendarControllerMock = $controller('calendarController', {
+			$scope:scope,
+			calendarService: _calendarService_
+		})
+	}) )
 
-	// beforeEach( inject(function($rootScope, $controller){
-	// 	scope = $rootScope.$new();
-	// 	calendarController = $controller('calendarController', {
-	// 		$scope:scope,
-	// 		calendarService: mockCalendarService
-	// 	})
-	// }) )
-	
 	it('should set the previous month exactly one month from now', function(){
 
 	})
@@ -35,6 +32,11 @@ describe('calender controller', function(){
 	})
 
 	it('should store the passed in date into the correct objects and format', function(){
+		var today = moment()
+		calendarControllerMock.UpdateSelectDate(today)
 
+		expect( calendarControllerMock.selectDate['year'] ).toEqual( today.format('YYYY') )
+		expect( calendarControllerMock.selectDate['month'] ).toEqual( today.format('MMMM') )
+		expect( calendarControllerMock.selectDate['date'] ).toEqual( today.format('DD') )
 	})
 })

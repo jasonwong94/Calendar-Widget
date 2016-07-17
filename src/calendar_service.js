@@ -4,6 +4,7 @@ var app = angular.module("calendarWidget")
 app.service("calendarService", ["$window", function($window) {
 	var service = this;
 	moment = $window.moment
+	_ = $window._
 
 	//date format for the key
 	service.DATE_KEY_FORMAT = 'MMMM D YYYY'

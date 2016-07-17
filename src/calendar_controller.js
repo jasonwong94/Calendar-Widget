@@ -1,10 +1,7 @@
 (function(){
 var app = angular.module("calendarWidget")
 
-app.controller("calendarController", ["$scope", "$window", "calendarService", function($scope, $window, calendarService){
-
-	moment = $window.moment;
-	_ = $window._;
+app.controller("calendarController", ["$scope", "calendarService", function($scope, calendarService){
 
 	var vm = this;
 	var present = new moment();

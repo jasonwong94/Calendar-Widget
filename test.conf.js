@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'browserify'],
 
 
     // list of files / patterns to load in the browser
@@ -19,7 +19,6 @@ module.exports = function(config) {
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/moment/moment.js',
       'node_modules/lodash/lodash.js',
-      'node_modules/requirejs/require.js',
       'calendar_app.js',
       'src/*.js',
       'test/*.js'
@@ -34,6 +33,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      '/test/*.js': [ 'browserify' ]
     },
 
 
@@ -71,6 +71,11 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    browserify: {
+      debug: true,
+      watch: true
+    }
   })
 }

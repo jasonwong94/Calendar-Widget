@@ -19,6 +19,15 @@ app.controller("calendarController", ["$scope", "calendarService", function($sco
 	vm.selectDate['month'] = selectDate.format('MMMM')
 	vm.selectDate['date'] = selectDate.format('DD')
 
+	//calendarsToBeDisplayed
+	vm.calendarList = {
+		"Tesla": "#dddddd",
+		"YNCN": "#fdad9e",
+		"Engineering Society": "#ffffb7",
+		"Spark": "#d4ffcf",
+		"UTRA": "#ffe6b5"
+	}
+
 	vm.monthObjects = calendarService.generateCalendarObject( vm.today['year'], vm.today['month'] );
 
 	vm.PreviousMonth = function(){

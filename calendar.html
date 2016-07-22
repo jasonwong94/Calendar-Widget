@@ -34,6 +34,16 @@
 				<button type="button" class="btn btn-default" ng-click="main.NextMonth()">Next Month</button>
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="well well-sm col-md-12">
+				<span class="calendar-title col-md-2" ng-repeat="(calendarID, color) in main.calendarList">
+					<span class="badge" ng-style="{backgroundColor: color}">&nbsp;</span>
+					<span>{{calendarID}}</span>
+				</span>
+			</div>
+		</div>
+
 		<div class="row table-responsive">
 			<table class="table calendar-table">
 				<tr>
@@ -47,7 +57,7 @@
 				</tr>
 				<tr ng-repeat="(weekID, week) in main.monthObjects">
 					<td ng-repeat="(date, event) in week" ng-class="{ 'calendar-disable': !main.IsSameMonth(date)}" class="calendar-date">
-						<span ng-class="{ 'calendar-today': main.IsToday(date)}">{{ main.FormatDate(date) }}</span>
+						<div ng-class="{ 'calendar-today': main.IsToday(date)}">{{ main.FormatDate(date) }}</div>
 					</td>
 				</tr>
 			</table>

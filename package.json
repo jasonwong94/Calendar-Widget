@@ -24,6 +24,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "karma start test.conf.js",
+    "e2etest": "protractor protractor.conf.js",
     "start": "node server.js"
   },
   "repository": {

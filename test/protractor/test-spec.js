@@ -6,6 +6,7 @@ var yearTitleBinding = element(by.binding('main.selectDate.year'))
 var previousMonthButton = element(by.id('previousMonthButton'))
 var nextMonthButton = element(by.id('nextMonthButton'))
 var todayButton = element(by.id('todayButton'))
+var todayDateBox = element(by.id(today))
 
 describe('Calendar Widget Demo App', function(){
     
@@ -77,6 +78,12 @@ describe('Calendar Widget Demo App', function(){
              nextMonthButton.click();
         }
         expect(yearTitleBinding.getText()).toEqual(year)
+    })
+
+    xit('should have a green background', function(){
+        var hoveredElement = browser.actions().mouseMove(todayDateBox).perform();
+
+        expect(element(by.class('calendar-date'))).toMatch('calendar-sasdfs')
     })
 })
 

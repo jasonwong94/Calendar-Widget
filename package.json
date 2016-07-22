@@ -1,0 +1,40 @@
+{
+  "name": "calendar-widget",
+  "version": "1.0.0",
+  "description": "HTML calendar widget using AngularJS",
+  "main": "calendar_app.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "browserify": "^13.0.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.1.1",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.1",
+    "karma-requirejs": "^1.0.0",
+    "angular": "^1.5.7",
+    "angular-mocks": "^1.5.7",
+    "requirejs": "^2.2.0",
+    "lodash": "^4.13.1",
+    "moment": "^2.14.1",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "karma start test.conf.js",
+    "e2etest": "protractor protractor.conf.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonwong94/Calendar-Widget.git"
+  },
+  "author": "jasonwong94",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonwong94/Calendar-Widget/issues"
+  },
+  "homepage": "https://github.com/jasonwong94/Calendar-Widget#readme"
+}

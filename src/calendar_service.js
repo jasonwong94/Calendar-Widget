@@ -1,7 +1,7 @@
 (function(){
 var app = angular.module("calendarWidget")
 
-app.service("calendarService", function() {
+app.service("calendarService", [function() {
 	var service = this;
 
 	//date format for the key
@@ -64,6 +64,6 @@ app.service("calendarService", function() {
 		return date == moment().format(this.DATE_KEY_FORMAT) 
 	}
 
-})
+}])
 
 })();
